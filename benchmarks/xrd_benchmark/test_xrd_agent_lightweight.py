@@ -62,7 +62,7 @@ XRD_TASK_INSTRUCTION = """Complete a full scan workflow in the XRD simulator and
 1. Select a specimen from the dropdown menu
 2. Change the specimen: click the DOORS button to open the chamber, then click CLOSE to close the door after loading
 3. After the door is fully closed, click the STANDBY button to power up and wait until ready
-4. Use the angle adjustment buttons to set the start angle and end angle (ensure start angle < end angle)
+4. Use the angle adjustment buttons to set the start angle to 10° and the end angle to 60°
 5. Select the step size (STEP SIZE) from the dropdown
 6. Select the scan rate (SCAN RATE) from the dropdown
 7. Click the START SCAN button to begin scanning and wait for completion

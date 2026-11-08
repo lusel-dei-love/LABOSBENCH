@@ -447,6 +447,15 @@ const increasePower_fn = () => {
 }
 // ======================= END ======================== //
 // ======================= START ======================== //
+// Benchmark: S4 SetAngles 成功 = 起始/终止角度达到指令给出的目标值（页面初始为 5°/80°，与目标不同）
+const XRD_S4_TARGET = { start: 10, end: 60 };
+function xrd_check_s4() {
+    if (start_angle === XRD_S4_TARGET.start && end_angle === XRD_S4_TARGET.end &&
+        window.XRD_BENCHMARK_API && typeof XRD_BENCHMARK_API.markSubtaskSuccess === "function") {
+        XRD_BENCHMARK_API.markSubtaskSuccess("S4");
+    }
+}
+
 $('#btn-start-dw').click(function (e) {
     if (start_angle > 5) {
         $(this).css("cursor", "pointer");
@@ -457,10 +466,7 @@ $('#btn-start-dw').click(function (e) {
     }
     $("#start-txt").html(`${start_angle}&#176;`);
     XRD_step_num = 5;
-    // Benchmark: S4 SetAngles 成功（设置了合法的起始/终止角度）
-    if (window.XRD_BENCHMARK_API && typeof XRD_BENCHMARK_API.markSubtaskSuccess === "function") {
-        XRD_BENCHMARK_API.markSubtaskSuccess("S4");
-    }
+    xrd_check_s4();
     if (switch_angle_a) next_step();
     switch_angle_a = false;
 })
@@ -475,9 +481,7 @@ $('#btn-start-up').click(function (e) {
     }
     $("#start-txt").html(`${start_angle}&#176;`);
     XRD_step_num = 5;
-    if (window.XRD_BENCHMARK_API && typeof XRD_BENCHMARK_API.markSubtaskSuccess === "function") {
-        XRD_BENCHMARK_API.markSubtaskSuccess("S4");
-    }
+    xrd_check_s4();
     if (switch_angle_a) next_step();
     switch_angle_a = false;
 })
@@ -509,9 +513,7 @@ $('#btn-end-dw').click(function (e) {
     }
     $("#end-txt").html(`${end_angle}&#176;`);
     XRD_step_num = 5;
-    if (window.XRD_BENCHMARK_API && typeof XRD_BENCHMARK_API.markSubtaskSuccess === "function") {
-        XRD_BENCHMARK_API.markSubtaskSuccess("S4");
-    }
+    xrd_check_s4();
     if (switch_angle_b) next_step();
     switch_angle_b = false;
     switch_angle_a = false;
@@ -527,9 +529,7 @@ $('#btn-end-up').click(function (e) {
     }
     $("#end-txt").html(`${end_angle}&#176;`);
     XRD_step_num = 5;
-    if (window.XRD_BENCHMARK_API && typeof XRD_BENCHMARK_API.markSubtaskSuccess === "function") {
-        XRD_BENCHMARK_API.markSubtaskSuccess("S4");
-    }
+    xrd_check_s4();
     if (switch_angle_b) next_step();
     switch_angle_b = false;
     switch_angle_a = false;
