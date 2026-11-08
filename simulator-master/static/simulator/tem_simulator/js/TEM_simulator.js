@@ -1709,7 +1709,8 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
         $("#sample").val(selVal);
         if ($("#sample").length && typeof $("#sample").selectmenu === "function") $("#sample").selectmenu("refresh");
         if (typeof chosen_sample !== "undefined") chosen_sample = 2;
-        if (typeof sample_set !== "undefined") sample_set = 2;
+        // sample_set 声明时没有初值（typeof 为 "undefined"），这里必须无条件赋值，否则依赖它的图像与样品台代码都不会运行
+        sample_set = 2;
         if (typeof sprites !== "undefined" && sprites[12] && sprites[12][chosen_sample - 1]) {
             green_mesh = sprites[12][chosen_sample - 1];
             displayed_img = green_mesh;
