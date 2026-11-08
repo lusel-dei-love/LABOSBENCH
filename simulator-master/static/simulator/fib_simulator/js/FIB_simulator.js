@@ -2393,7 +2393,10 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                 } catch (e) {
                     console.warn("F12: delete-pattern click", e);
                 }
-                if (typeof b_currentr_d_fn === "function") b_currentr_d_fn();
+                // 不调用 b_currentr_d_fn（那是 F10 选 3nA 后的处理）：它会禁用 BEAM CURRENT 并启用 START。
+                // 只记下它在真实流程中留下的计数；第一次拖放已完成（pattern_a = 1）。
+                b_currentr_d_var = 1;
+                pattern_a = 1;
                 break;
             case "F13":
                 // 原先只设 start_patterning/delete_patterns，未包含 F12 及第二次铣削链，界面不像「F12 完成后」。
