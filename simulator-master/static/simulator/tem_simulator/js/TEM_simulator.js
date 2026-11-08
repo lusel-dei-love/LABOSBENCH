@@ -1750,7 +1750,7 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
         $("#beam-axis").css("opacity", "0.7");
         $("#beams-imaging").css("opacity", "0.7");
     }
-    if (stepIndex >= 4) {
+    if (stepIndex >= 6) {
         $("#magnification").val("b");
         if (typeof $("#magnification").selectmenu === "function") {
             $("#magnification").selectmenu("refresh");

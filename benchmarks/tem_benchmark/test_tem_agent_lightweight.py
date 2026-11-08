@@ -346,8 +346,8 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
         # 第 6 步：BEAM 打开
         if current >= 5 and (s.get("filament_value") or "").lower() == "on":
             current = 6
-        # 第 7 步：倍率已选择
-        if current >= 6 and (s.get("magnification_value") or "").strip():
+        # 第 7 步：倍率已选择（"0" 是空白占位选项，不算已选择）
+        if current >= 6 and (s.get("magnification_value") or "").strip() not in ("", "0"):
             current = 7
         # 第 8 步：样品台 Z 轴标签启用
         if current >= 7:
