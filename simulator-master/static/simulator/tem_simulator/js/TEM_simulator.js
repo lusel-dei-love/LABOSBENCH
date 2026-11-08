@@ -1821,9 +1821,9 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
         window.TEM_step_num = 31;
     }
     if (stepIndex === 8) {
+        // TEM_step_31 解锁相机并把步号设为 32；此后插入相机才会推进到 ACQUIRE
         fn = window["TEM_step_31"];
         if (typeof fn === "function") fn();
-        window.TEM_step_num = 31;
     }
 };
 

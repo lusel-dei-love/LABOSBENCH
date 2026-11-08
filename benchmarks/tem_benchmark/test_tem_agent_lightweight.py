@@ -305,6 +305,7 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
             "   return !!(el && !el.classList.contains('label-disabled'));"
             " })();"
             " const saveModalHidden = modalHidden('#save-modal-window');"
+            " const cameraHtml = getHtml('#btn-camera');"
             " return {"
             "   sample_value: sampleVal,"
             "   sample_menu_open: sampleMenuOpen,"
@@ -318,6 +319,7 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
             "   magnification_value: magnVal,"
             "   focus_disabled: focusDisabled,"
             "   camera_label_enabled: cameraLabelEnabled,"
+            "   camera_html: cameraHtml,"
             "   save_modal_hidden: saveModalHidden"
             " };"
             "})()"
@@ -360,7 +362,8 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
             except Exception:
                 pass
         # 第 9 步：focus 调整后流程推进，相机会被解锁
-        if current >= 8 and s.get("camera_label_enabled"):
+        # 插入相机（第 10 步的第一个动作）会再次禁用相机标签，此时按钮显示 RETRACT，第 9 步仍算完成
+        if current >= 8 and (s.get("camera_label_enabled") or (s.get("camera_html") or "").strip() == "RETRACT"):
             current = 9
         # 第 10 步：保存弹窗已显示
         if current >= 9 and not s.get("save_modal_hidden"):
