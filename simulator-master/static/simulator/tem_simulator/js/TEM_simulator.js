@@ -1813,8 +1813,11 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
     if (stepIndex === 7) {
         fn = window["TEM_step_29"];
         if (typeof fn === "function") fn();
+        // 真实流程中 S8 的样品台移动会触发 TEM_step_30（启用 FOCUS，步号 31），之后一次合焦即解锁相机
+        fn = window["TEM_step_30"];
+        if (typeof fn === "function") fn();
         if (typeof activate_slider === "function") activate_slider("#focus");
-        window.TEM_step_num = 30;
+        window.TEM_step_num = 31;
     }
     if (stepIndex === 8) {
         fn = window["TEM_step_31"];
