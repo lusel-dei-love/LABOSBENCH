@@ -1752,6 +1752,8 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
     }
     if (stepIndex >= 6) {
         $("#magnification").val("b");
+        // 与下拉框选择 MEDIUM 时一致：样品台每次移动 0.5 µm（否则为 0，X/Y 按钮不改变读数）
+        if (typeof stage_increment !== "undefined") stage_increment = 0.5;
         if (typeof $("#magnification").selectmenu === "function") {
             $("#magnification").selectmenu("refresh");
         }

@@ -349,11 +349,11 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
         # 第 7 步：倍率已选择（"0" 是空白占位选项，不算已选择）
         if current >= 6 and (s.get("magnification_value") or "").strip() not in ("", "0"):
             current = 7
-        # 第 8 步：样品台 Z 轴标签启用
+        # 第 8 步：样品台已移动（X 或 Y 读数不为 0）。X/Y 按钮只改这两个读数，不会启用 Z 轴标签
         if current >= 7:
             try:
                 sp = page.evaluate(
-                    "(() => { const el = document.querySelector('#specimen-position .title-z'); return el && !el.classList.contains('label-disabled'); })()"
+                    "(() => ['#spinn-val-x', '#spinn-val-y'].some((sel) => { const el = document.querySelector(sel); const v = el ? parseFloat(el.textContent) : 0; return !isNaN(v) && v !== 0; }))()"
                 )
                 if sp:
                     current = 8
