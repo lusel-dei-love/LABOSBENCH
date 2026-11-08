@@ -2319,9 +2319,13 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
             case "F10":
                 _ff_to_F8();
                 if (typeof stage_z_done === "function") stage_z_done("up_01");
-                if (typeof $ !== "undefined" && $("#live-left-btn").length) {
-                    try { $("#live-left-btn").trigger("click"); } catch (e) {}
+                // 不触发 LIVE VIEW 点击：快进留下的多个扫描循环会各自回调一次 stop_live_l（第 1、2 分支会禁用 Rectangular Si
+                // milling、启用 START）。只设置点击后的状态，stop_live_l 只运行一次（分支 0）。
+                if (typeof scan_ch01 !== "undefined" && scan_ch01) {
+                    scan_ch01.constant_scanning = false;
+                    scan_ch01.after_snapshot_fn = empty_fn;
                 }
+                live_left = 2;
                 _ff_run(stop_live_l);
                 if (typeof reset_dd === "function") {
                     reset_dd("acc-volt-right", 1, 0);
@@ -2336,6 +2340,9 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                     try { $("#live-right-btn").trigger("click"); } catch (e) {}
                 }
                 _ff_run(beam_feat_centered_01, b_currentr_e_fn);
+                // 真实流程中，拖放后关闭弹窗应提示选 3nA（close-area 分支 3）。benchmark 模式会用 setTimeout(0)
+                // 自动关闭快进中弹出的消息框（simulator_snippets.js），所以在它之后再设置计数。
+                setTimeout(function () { close_area_modal = 3; }, 0);
                 break;
             case "F11":
                 start_patterning = 0;
@@ -2343,9 +2350,13 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                 pattern_a = 0;
                 _ff_to_F8();
                 if (typeof stage_z_done === "function") stage_z_done("up_01");
-                if (typeof $ !== "undefined" && $("#live-left-btn").length) {
-                    try { $("#live-left-btn").trigger("click"); } catch (e) {}
+                // 不触发 LIVE VIEW 点击：快进留下的多个扫描循环会各自回调一次 stop_live_l（第 1、2 分支会禁用 Rectangular Si
+                // milling、启用 START）。只设置点击后的状态，stop_live_l 只运行一次（分支 0）。
+                if (typeof scan_ch01 !== "undefined" && scan_ch01) {
+                    scan_ch01.constant_scanning = false;
+                    scan_ch01.after_snapshot_fn = empty_fn;
                 }
+                live_left = 2;
                 _ff_run(stop_live_l);
                 if (typeof reset_dd === "function") {
                     reset_dd("acc-volt-right", 1, 0);
@@ -2365,6 +2376,8 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                     try { $("#start-btn").trigger("click"); } catch (e) {}
                 }
                 _ff_run(end_pattern_01);
+                // F10 拖放后的弹窗已关闭过（close-area 分支 3，计数变为 4）；同样在自动关闭之后设置
+                setTimeout(function () { close_area_modal = 4; }, 0);
                 break;
             case "F12":
                 // 原先只设变量 + end_pattern_01，未跑 F2～F11 的 UI 链，界面不像「F11 结束后」。
