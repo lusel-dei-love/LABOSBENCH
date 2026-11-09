@@ -2310,6 +2310,9 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                 }
                 break;
             case "F7":
+                // 快进不弹出抽真空的提示框（真实流程中它以 close-area 分支 1 关闭），计数落后一位：
+                // end_wd_7mm 的提示框会走分支 1 而不是分支 2（启用 Tilt 下拉框）。先补上这一位。
+                close_area_modal = 2;
                 _ff_to_F7();
                 break;
             case "F8":
