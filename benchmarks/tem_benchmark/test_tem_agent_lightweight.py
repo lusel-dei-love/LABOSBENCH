@@ -333,7 +333,10 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
         if sample_val in ("1", "2", "3", "4") and not sample_menu_open:
             current = 1
         # 第 2 步：示意图按钮文字包含 INSERT
-        if current >= 1 and "INSERT" in (s.get("diag_specimen_html") or ""):
+        # 第 3 步在示意图中 INSERT 后按钮又显示 REMOVE；气锁抽真空（EVACUATE）说明样品杆已移出又放回
+        if current >= 1 and (
+            "INSERT" in (s.get("diag_specimen_html") or "") or "EVACUATE" in (s.get("airlock_html") or "")
+        ):
             current = 2
         # 第 3 步：AIRLOCK 按钮 disabled 且文字包含 EVACUATE
         if current >= 2 and s.get("airlock_disabled") and "EVACUATE" in (s.get("airlock_html") or ""):
