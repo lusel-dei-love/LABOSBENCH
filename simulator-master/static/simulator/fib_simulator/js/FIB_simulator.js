@@ -2321,15 +2321,14 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
             case "F9":
                 _ff_to_F8();
                 if (typeof stage_z_done === "function") stage_z_done("up_01");
-                if (typeof $ !== "undefined" && $("#live-left-btn").length) {
-                    try { $("#live-left-btn").trigger("click"); } catch (e) {}
+                // 与 F10 相同：只设置 LIVE VIEW 点击后的状态，stop_live_l 只运行一次（分支 0：启用离子束 ACC VOLTAGE 与
+                // BEAM CURRENT）。离子束 30kV / 10pA / HT 是 F9 本身要做的步骤，不在快进中完成。
+                if (typeof scan_ch01 !== "undefined" && scan_ch01) {
+                    scan_ch01.constant_scanning = false;
+                    scan_ch01.after_snapshot_fn = empty_fn;
                 }
+                live_left = 2;
                 _ff_run(stop_live_l);
-                if (typeof reset_dd === "function") {
-                    reset_dd("acc-volt-right", 1, 0);
-                    reset_dd("beam-current-right", 1, 0);
-                }
-                _ff_run(htr_fn);
                 break;
             case "F10":
                 _ff_to_F8();
