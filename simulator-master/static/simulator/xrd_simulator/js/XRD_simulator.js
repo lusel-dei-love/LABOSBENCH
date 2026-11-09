@@ -613,6 +613,14 @@ window.XRD_fast_forward_to_subtask = function (subtaskId) {
         ids.forEach(function (id) { markSuccess(id); });
     };
 
+    // S1 之后的子任务都假设样品已选好（真实流程 S1 的结果）。START SCAN 用 chosen_specimen 选曲线；
+    // 未定义时选择器为 nth-of-type(NaN)，抛错，扫描不会开始。这里选 Glass（S1 指令中的例子）。
+    if (subtaskId !== "S1" && typeof $ !== "undefined" && $("#specimen").length) {
+        $("#specimen").val("6");
+        if (typeof $("#specimen").selectmenu === "function") $("#specimen").selectmenu("refresh");
+        chosen_specimen = 6;
+    }
+
     switch (subtaskId) {
         case "S1":
             // 初始状态：只需要正常选择样品即可
