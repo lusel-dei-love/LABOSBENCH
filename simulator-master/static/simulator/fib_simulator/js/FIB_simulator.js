@@ -2233,6 +2233,18 @@ function _ff_to_F8() {
     _ff_to_F7();
     _ff_run(end_tilt10);
 }
+// 快进中直接调用 patterns_*_fn / *_dragged 时，拖放框和 Draggable 会留在页面上；真实流程中每次拖放后都会隐藏。
+// 子任务开始时没有待拖放的图案，否则拖动旧图案会再次运行它的回调（例如点亮 START）。
+function _ff_clear_drags() {
+    for (let i = 1; i <= 10; i++) {
+        try {
+            if (typeof Draggable !== "undefined" && Draggable.get("#drag" + i)) Draggable.get("#drag" + i).kill();
+            toogle_fn("#svg-dd-" + i, "totally-hidden", false);
+        } catch (e) {
+            console.warn("FIB_fast_forward clear drag", i, e);
+        }
+    }
+}
 window.FIB_fast_forward_to_subtask = function (subtaskId) {
     const FIB_ORDER = ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20"];
     const idx = FIB_ORDER.indexOf(subtaskId);
@@ -2516,6 +2528,9 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                 } catch (e3) {
                     console.warn("F15: stop_live_l (Pt Deposition pattern ready)", e3);
                 }
+                // 真实流程中 START 由电子束 LIVE VIEW 停止扫描后的 stop_live_l（第 2 分支）点亮（live_left 分支 7）。
+                // Pt 图案拖放后的弹窗关闭（分支 4）会提示并启用 LIVE VIEW。
+                live_left = 7;
                 delete_patterns = 3;
                 start_patterning = 2;
                 pattern_a = 1;
@@ -2812,6 +2827,7 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
         } catch (e) {
             console.warn("FIB_fast_forward_to_subtask UI setup:", e);
         }
+        _ff_clear_drags();
 };
 // ======================= END FAST FORWARD FOR BENCHMARK ======================== //
 

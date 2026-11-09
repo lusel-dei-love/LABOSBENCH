@@ -71,7 +71,7 @@ FIB_SUBTASK_DEMOS = {
     "F12": {"name": "SecondRectStart", "instruction": "已删除图案。请离子束 BEAM CURRENT 选 30nA，再次选 Rectangular Si milling，拖放后 START；完成后 DELETE PATTERN，BEAM CURRENT 调回 10pA。完成后即可停止。"},
     "F13": {"name": "BeamCurrent10pA", "instruction": "第二块矩形已完成。请将离子束 BEAM CURRENT 调回 10pA。完成后 DELETE PATTERN，完成后即可停止。"},
     "F14": {"name": "PtNeedleIn", "instruction": "电流已调好。请勾选 Pt Needle 插入针。完成后即可停止。"},
-    "F15": {"name": "PtDepositionStart", "instruction": "Pt 针已插入。请 PATTERN 选 Pt Deposition，拖放到蓝色框内，START（可做两次沉积）。完成后即可停止。"},
+    "F15": {"name": "PtDepositionStart", "instruction": "Pt 针已插入。请 PATTERN 选 Pt Deposition，拖放到蓝色框内，点击电子束 LIVE VIEW，再点击 START（可做两次沉积）。完成后即可停止。"},
     "F16": {"name": "IonSnapshot5000x", "instruction": "Pt 沉积已完成。请将离子束 MAGNIFICATION 设为 5000x，点击 SNAPSHOT。完成后即可停止。"},
     "F17": {"name": "CrossSectionCutStart", "instruction": "快照已拍。请 PATTERN 选 Cross Section Cutting，拖放到蓝色框，BEAM CURRENT 选 3nA，START。完成后即可停止。"},
     "F18": {"name": "CleaningCrossSectionStart", "instruction": "截面切割已完成。请 PATTERN 选 Cleaning Cross Section Cutting，BEAM CURRENT 选 0.1nA，拖放后 START。完成后即可停止。"},
