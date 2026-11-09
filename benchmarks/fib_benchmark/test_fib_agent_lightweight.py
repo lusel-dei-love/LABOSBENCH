@@ -134,7 +134,7 @@ FIB_TASK_INSTRUCTION = """在 FIB 模拟器中完成 Si Wafer 的完整流程（
 
 【离子束与第一次铣削】
 7. 离子束 ACC VOLTAGE 30Kv、BEAM CURRENT 10pA，点击离子束 HT，MAGNIFICATION 3000x，点击离子束 LIVE VIEW，用 BEAM SHIFT 将特征居中，再点击 LIVE VIEW 停止
-8. PATTERN 选 Rectangular Si milling，将黄色方框拖到蓝色框内，点击 START，等待完成后点击 DELETE PATTERN
+8. PATTERN 选 Rectangular Si milling，将黄色方框拖到蓝色框内，离子束 BEAM CURRENT 选 3nA，点击 START，等待完成后点击 DELETE PATTERN
 
 【第二块矩形与 Pt 沉积】
 9. 离子束 BEAM CURRENT 选 30nA，再次选 Rectangular Si milling，拖放后 START；完成后 DELETE PATTERN，BEAM CURRENT 调回 10pA

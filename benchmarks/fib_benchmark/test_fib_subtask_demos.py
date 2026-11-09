@@ -66,7 +66,7 @@ FIB_SUBTASK_DEMOS = {
     "F7": {"name": "Tilt10deg", "instruction": "WD 已设好。请将 TILT 选 10°。完成后即可停止。"},
     "F8": {"name": "StageZCenter", "instruction": "Tilt 已设。请用 STAGE Z 将特征调回中心，点击电子束 LIVE VIEW 停止；再设 TILT 52°，调节 Stage Z，点击 AUTO BRIGHTNESS，勾选 Surface，必要时 Centre Feature。完成后即可停止。"},
     "F9": {"name": "IonBeamLiveCenter", "instruction": "电子束已就绪。请设离子束 ACC VOLTAGE 30Kv、BEAM CURRENT 10pA，点击离子束 HT，MAGNIFICATION 3000x，点击离子束 LIVE VIEW，用 BEAM SHIFT 将特征居中，再点击 LIVE VIEW 停止。完成后即可停止。"},
-    "F10": {"name": "FirstRectStart", "instruction": "离子束已居中。请 PATTERN 选 Rectangular Si milling，将黄色方框拖到蓝色框内，点击 START，等待完成。完成后即可停止。"},
+    "F10": {"name": "FirstRectStart", "instruction": "离子束已居中。请 PATTERN 选 Rectangular Si milling，将黄色方框拖到蓝色框内，离子束 BEAM CURRENT 选 3nA，再点击 START，等待完成。完成后即可停止。"},
     "F11": {"name": "DeletePattern", "instruction": "第一次矩形铣削已完成。请点击 DELETE PATTERN。完成后即可停止。"},
     "F12": {"name": "SecondRectStart", "instruction": "已删除图案。请离子束 BEAM CURRENT 选 30nA，再次选 Rectangular Si milling，拖放后 START；完成后 DELETE PATTERN，BEAM CURRENT 调回 10pA。完成后即可停止。"},
     "F13": {"name": "BeamCurrent10pA", "instruction": "第二块矩形已完成。请将离子束 BEAM CURRENT 调回 10pA。完成后 DELETE PATTERN，完成后即可停止。"},
