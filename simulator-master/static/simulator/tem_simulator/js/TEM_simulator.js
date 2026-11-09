@@ -1719,7 +1719,8 @@ window.TEM_JUMP_TO_STATE = function (stepIndex) {
             }
             if ($("#acc-volt").length && typeof $("#acc-volt").selectmenu === "function") $("#acc-volt").selectmenu("refresh");
         }
-        if (stepIndex > 0) $("#tem-diagram-modal").addClass("totally-hidden");
+        // 真实流程中示意图在 T2（REMOVE）与 T3（在示意图中 INSERT，气锁自动抽真空）时打开；T3 之前不能隐藏
+        if (stepIndex > 1) $("#tem-diagram-modal").addClass("totally-hidden");
     }
     if (stepIndex >= 1 && document.querySelector("#btn-diag-specimen")) {
         document.querySelector("#btn-diag-specimen").innerHTML = "INSERT";

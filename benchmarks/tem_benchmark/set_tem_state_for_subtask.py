@@ -33,7 +33,7 @@ from playwright.sync_api import sync_playwright
 SUBTASK_INSTRUCTIONS = [
     "1. 从 SAMPLE 下拉框中选择一个样品（如 NANOPARTICLES、ZEBRAFISH、METAL、MINERAL）",
     "2. 在示意图中点击 REMOVE，将空样品杆移出",
-    "3. 点击 AIRLOCK 面板中的 PUMP 按钮，对气锁抽真空",
+    "3. 在示意图中点击 INSERT，将样品杆放回气锁，等待气锁自动抽真空（AIRLOCK 显示 EVACUATE）",
     "4. 点击 SPECIMEN 面板中的 INSERT 按钮，将样品插入电镜",
     "5. 在 ACC. VOLTAGE 下拉框中选择120 kV",
     "6. 点击 BEAM 面板中的 ON 按钮，打开电子束，并使用 FILAMENT CURRENT 滑块调节电子强度",
