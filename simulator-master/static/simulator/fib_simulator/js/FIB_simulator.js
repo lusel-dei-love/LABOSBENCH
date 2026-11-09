@@ -2770,21 +2770,20 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                     console.warn("F19: F18 START + end_pattern", e3);
                 }
                 try {
-                    cross_var = 0;
+                    // 真实流程中 cross_fn 的分支 0、1 属于 Pt 沉积前的成像；F19 是分支 2（勾选后 Capture）和分支 3（再勾选，
+                    // 计为 F19）。分支 3 所需的勾选由 Capture 后提示框的关闭（close-area 分支 9）启用。
+                    cross_var = 2;
                     if (typeof toogle_fn === "function") toogle_fn("#cross-section-form", "checkbox-disabled", true);
                     if (typeof $ !== "undefined" && $("#cross-section").length) {
-                        $("#cross-section").prop("disabled", false);
                         $("#cross-section").prop("checked", false);
                     }
-                    if (typeof scan_ch01 !== "undefined" && scan_ch01) {
-                        scan_ch01.tvCounter = 2;
-                        scan_ch01.img = (typeof al_sample !== "undefined" && al_sample) ? al_ch1_set_15 : si_ch1_set_15;
-                    }
-                    if (typeof instruction !== "undefined" && typeof showInstruction === "function") {
-                        instruction = "Tick <b>Cross Section</b> to apply image tilt correction for optimal viewing of the cross sections of the milled areas.";
-                        showInstruction(instruction);
-                    }
                     surface_var = 2;
+                    // F18 之后真实流程点击电子束 LIVE VIEW（live_left 分支 8）：开始扫描、启用 Cross Section、提示勾选
+                    live_left = 8;
+                    if (typeof activate_btn === "function") activate_btn("live-left");
+                    if (typeof $ !== "undefined" && $("#live-left-btn").length) $("#live-left-btn").trigger("click");
+                    // 快进中弹出的提示框在 setTimeout(0) 中自动关闭；在它们之后设置计数
+                    setTimeout(function () { close_area_modal = 9; }, 0);
                 } catch (e4) {
                     console.warn("F19: Cross Section imaging ready", e4);
                 }
@@ -2796,8 +2795,9 @@ window.FIB_fast_forward_to_subtask = function (subtaskId) {
                 // 先快进到 F19 起点，再模拟 F19 完成（Cross Section 成像链 case0–3），到 F20 任务前（提示 Tilt 0°、尚未选 Tilt / Centre Stage）
                 window.FIB_fast_forward_to_subtask("F19");
                 try {
-                    cross_var = 0;
-                    for (var fc = 0; fc < 4; fc++) {
+                    // F19 的预设从 cross_fn 分支 2 开始；F19 完成即分支 2、3
+                    cross_var = 2;
+                    for (var fc = 0; fc < 2; fc++) {
                         if (typeof cross_fn === "function") cross_fn();
                     }
                 } catch (e) {
