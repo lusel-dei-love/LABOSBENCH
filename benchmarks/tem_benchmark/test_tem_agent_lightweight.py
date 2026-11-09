@@ -114,7 +114,7 @@ def to_tem_state_snapshot(state: Dict[str, Any]) -> Dict[str, Any]:
         "sample_chosen": (state.get("sample_value") or None),
         "airlock_pumped": bool(state.get("airlock_disabled")) if "airlock_disabled" in state else None,
         "specimen_inserted": (
-            "IN" in (state.get("specimen_html") or "") or
+            (state.get("specimen_html") or "").strip() == "IN" or
             (state.get("specimen_value") or "").lower() == "on"
         ) if state else None,
         "acc_voltage": _clean_acc_voltage(state.get("acc_volt_value") or ""),
@@ -339,7 +339,8 @@ def get_tem_state(page: Page) -> Dict[str, Any]:
         if current >= 2 and s.get("airlock_disabled") and "EVACUATE" in (s.get("airlock_html") or ""):
             current = 3
         # 第 4 步：SPECIMEN 按钮为 IN 或 value 为 on
-        if current >= 3 and ("IN" in (s.get("specimen_html") or "") or (s.get("specimen_value") or "").lower() == "on"):
+        # 按钮在插入前显示 INSERT，其中也含 "IN"，所以要求文字恰为 IN
+        if current >= 3 and ((s.get("specimen_html") or "").strip() == "IN" or (s.get("specimen_value") or "").lower() == "on"):
             current = 4
         # 第 5 步：ACC. VOLTAGE 必须为 120kV（select value == 'a'）
         v_acc = (s.get("acc_volt_value") or "").strip().lower()
