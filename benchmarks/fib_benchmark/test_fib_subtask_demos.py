@@ -75,8 +75,8 @@ FIB_SUBTASK_DEMOS = {
     "F16": {"name": "IonSnapshot5000x", "instruction": "Pt 沉积已完成。请将离子束 MAGNIFICATION 设为 5000x，点击 SNAPSHOT。完成后即可停止。"},
     "F17": {"name": "CrossSectionCutStart", "instruction": "快照已拍。请 PATTERN 选 Cross Section Cutting，拖放到蓝色框，BEAM CURRENT 选 3nA，START。完成后即可停止。"},
     "F18": {"name": "CleaningCrossSectionStart", "instruction": "截面切割已完成。请 PATTERN 选 Cleaning Cross Section Cutting，BEAM CURRENT 选 0.1nA，拖放后 START。完成后即可停止。"},
-    "F19": {"name": "Tilt0deg", "instruction": "清理截面已完成。请勾选 Cross Section 做截面成像，必要时多次 Capture；最后将 Tilt 设为 0°。完成后即可停止。"},
-    "F20": {"name": "TaskComplete", "instruction": "截面与 Tilt 已就绪。请完成最后一步：按界面提示 Centre Stage 或确认任务完成。完成后即可停止。"},
+    "F19": {"name": "Tilt0deg", "instruction": "清理截面已完成。请勾选 Cross Section 做截面成像，必要时多次 Capture。完成后即可停止。"},
+    "F20": {"name": "TaskComplete", "instruction": "截面成像已完成。请将 TILT 设为 0°。完成后即可停止。"},
 }
 FIB_SUBTASK_IDS = ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20"]
 
